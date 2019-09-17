@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Quoting Dojo</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    
+    <body>
+        <h1>Welcome to Message Dashboard</h1>
+        <form action="/processMessage" method="POST">
+            Your Name:
+            <input type="text" name="name" >
+            <br><br>
+            Your Meassage:
+            <textarea type="text" name="message" ></textarea>
+            <br><br>
+            
+            <input type="submit" value="Post Meassage">
+        </form> <br>
+        <div>
+                <div>
+                        <h3>Here is your Post Message</h3>
+                        <% for(var i in messages){%>
+                            <p><%= messages[i].name %></p>
+                            <p><%= messages[i].message  %></p>
+                            <h3>Here is your Post Comments</h3>
+                            <form action="/processComment/<%= messages[i].id %>" method="POST">
+                                Your Name:
+                                <input type="text" name="name" >
+                                <br><br>
+                                <textarea type="text" name="comment" ></textarea>
+                                <br><br>
+                                
+                                <input type="submit" value="Post Comment">
+                            </form> <br>
+                            <% for(comment of messages[i].comments){%>
+                                <p><%= comment.name %></p>
+                                <p><%= comment.comment %></p>
+                            <%}%>
+                                
+                        <%}%>
+                        
+
+                </div>
+            
+        </div>
+    </body>
+</html>
